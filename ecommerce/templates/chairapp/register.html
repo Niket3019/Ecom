@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-
+{% load static %}
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Register Page</title>
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
     </style>
 </head>
 
@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-lg-5">
-                    <img src="images/chair img 2.jpg" class="img-fluid" alt="">
+                    <img src="{% static 'images/chair img 2.jpg' %}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-7 px-5 pt-5">
                     <h1 class="forgot"><b>Aarti Chairs</b></h1>
@@ -47,7 +47,7 @@
                                           <div class="form-check">  
                                             <label class="form-check-label">  
                                               <input type="checkbox" class="form-check-input">  
-                                              I hereby agree to the <a href="tnc.html" target="_blank"> Terms and Conditions. </a>  
+                                              I hereby agree to the <a href="/tnc" target="_blank"> Terms and Conditions. </a>  
                                             </label>  
                                         </div>
                                 <div class="form-row">
@@ -56,7 +56,7 @@
                                     </div>
                                     
                                 </div>
-                                <p class="forgot">Already have an account? <a href="login.html">Login here</a></p>
+                                <p class="forgot">Already have an account? <a href="/login">Login here</a></p>
                     </form>
 
                 </div>

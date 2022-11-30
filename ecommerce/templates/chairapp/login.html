@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-
+{% load static %}
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,16 +11,15 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Login Page</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
     </style>
 </head>
-
 <body>
     <section class="form my-4 mx-5">
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-lg-5">
-                    <img src="images/chairs 2.0.jpg" class="img-fluid" alt="">
+                    <img src="{% static 'images/chairs 2.0.jpg' %}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-7 px-5 pt-5">
                     <h1 class="forgot"><b>Aarti Chairs</b></h1>
@@ -40,14 +39,15 @@
                                     </div>
 
                                 </div>
-                                <a class="forgot" href="forgot.html" target="_blank">Forgot Password</a>
-                                <p class="forgot">Don't have an account? <a href="register.html" >Register here</a></p>
+                                <a class="forgot" href="/forgot" target="_blank">Forgot Password</a>
+                                <p class="forgot">Don't have an account? <a href="/register" >Register here</a></p>
                     </form>
 
                 </div>
             </div>
         </div>
     </section>
+    
 
 
 

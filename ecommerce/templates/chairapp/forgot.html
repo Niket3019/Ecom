@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-
+{% load static %}
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Forgot Password</title>
-    <link rel="stylesheet" href="css/forgot.css">
+    <link rel="stylesheet" href="{% static 'css/forgot.css' %}">
     </style>
 </head>
 
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-lg-5">
-                    <img src="images/qts chair.jpg" class="img-fluid" alt="">
+                    <img src="{% static 'images/qts chair.jpg' %}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-7 px-5 pt-5">
                     <h1 class="forgot"><b>Aarti Chairs</b></h1>
@@ -40,7 +40,7 @@
                                     </div>
 
                                 </div>
-                                <p class="forgot">Don't have an account? <a href="register.html" >Register here</a></p>
+                                <p class="forgot">Don't have an account? <a href="/register" >Register here</a></p>
                     </form>
 
                 </div>

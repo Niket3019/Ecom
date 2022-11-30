@@ -681,6 +681,7 @@ progress {
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-top: var(--bs-gutter-y);
+  display:contents;
 }
 
 .col {
@@ -5097,6 +5098,7 @@ textarea.form-control-lg {
   text-decoration: none;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
+  margin-bottom: 1rem;
 }
 .list-group-item:first-child {
   border-top-left-radius: inherit;

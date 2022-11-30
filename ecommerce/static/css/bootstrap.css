@@ -564,6 +564,17 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
+.row > * {
+  
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: var(--bs-gutter-y);
+  display: contents;
+}
+
 
 @media (min-width: 576px) {
   .container {
@@ -5372,6 +5383,7 @@ a.badge-dark:focus, a.badge-dark.focus {
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
+  margin-bottom: 1rem;
 }
 
 .list-group-item:first-child {
