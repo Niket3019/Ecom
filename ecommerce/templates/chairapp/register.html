@@ -26,21 +26,28 @@
                 <div class="col-lg-7 px-5 pt-5">
                     <h1 class="forgot"><b>Aarti Chairs</b></h1>
                     <h4 class="forgot">Create an account</h4>
-                    <form>
+                    <form action="/register" method="POST">
+                        {% csrf_token %}
                         <div class="form-row">
                             <div class="col-lg-7">
-                                <input type="name" placeholder="Enter your name" class="form-control my-3 p-4">
+                                <input type="user_name" name = "username" placeholder="Enter your user_name" class="form-control my-3 p-4">
                             </div>
                             <div class="col-lg-7">
-                                <input type="email" placeholder="Email-Address" class="form-control my-3 p-4">
+                                <input type="name" name = "fullname" placeholder="Enter your name" class="form-control my-3 p-4">
+                            </div>
+                            <div class="col-lg-7">
+                                <input type="text" name = "emailaddress" placeholder="Email-Address" class="form-control my-3 p-4">
+                            </div>
+                            <div class="col-lg-7">
+                                <input type="Phone" name = "phone" placeholder="Phone" class="form-control my-3 p-4">
                             </div>
                             <div class="form-row">
                                 <div class="col-lg-7">
-                                    <input type="password" placeholder="Password" class="form-control my-3 p-4 ">
+                                    <input type="password" name = "password" placeholder="Password" class="form-control my-3 p-4 ">
                                 </div>
                                 <div class="form-row">
                                     <div class="col-lg-7">
-                                        <input type="password" placeholder="Confirm-Password" class="form-control my-3 p-4 ">
+                                        <input type="password" name = "confirmpassword" placeholder="Confirm-Password" class="form-control my-3 p-4 ">
                                     </div>
                                     <div class="form-row">  
                                         <div class="col">  
@@ -52,11 +59,10 @@
                                         </div>
                                 <div class="form-row">
                                     <div class="col-lg-7">
-                                        <button type="button" class="btn1 mt-4 mb-4">Register</button>
+                                        <input type="submit" value="Register" class="btn1 mt-4 mb-4">
                                     </div>
                                     
-                                </div>
-                                <p class="forgot">Already have an account? <a href="/login">Login here</a></p>
+                               
                     </form>
 
                 </div>
