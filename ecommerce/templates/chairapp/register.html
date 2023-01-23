@@ -28,32 +28,37 @@
                     <h4 class="forgot">Create an account</h4>
                     <form action="/register" method="POST">
                         {% csrf_token %}
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{error}}
+                        </div>
+                        {% endif %}
                         <div class="form-row">
                             <div class="col-lg-7">
-                                <input type="user_name" name = "username" placeholder="Enter your user_name" class="form-control my-3 p-4">
+                                <input type="user_name" name = "username" value="{{values.username}}" placeholder="Enter your user_name" class="form-control my-3 p-4">
                             </div>
                             <div class="col-lg-7">
-                                <input type="name" name = "fullname" placeholder="Enter your name" class="form-control my-3 p-4">
+                                <input type="name" name = "fullname" value="{{values.fullname}}" placeholder="Enter your name" class="form-control my-3 p-4">
                             </div>
                             <div class="col-lg-7">
-                                <input type="text" name = "emailaddress" placeholder="Email-Address" class="form-control my-3 p-4">
+                                <input type="text" name = "emailaddress" value="{{values.emailaddress}}" placeholder="Email-Address" class="form-control my-3 p-4">
                             </div>
                             <div class="col-lg-7">
-                                <input type="Phone" name = "phone" placeholder="Phone" class="form-control my-3 p-4">
+                                <input type="Phone" name = "phone" value="{{values.phone}}" placeholder="Phone" class="form-control my-3 p-4">
                             </div>
                             <div class="form-row">
                                 <div class="col-lg-7">
-                                    <input type="password" name = "password" placeholder="Password" class="form-control my-3 p-4 ">
+                                    <input type="password" name = "password" value="{{values.password}}" placeholder="Password" class="form-control my-3 p-4 ">
                                 </div>
                                 <div class="form-row">
                                     <div class="col-lg-7">
-                                        <input type="password" name = "confirmpassword" placeholder="Confirm-Password" class="form-control my-3 p-4 ">
+                                        <input type="password" name = "confirmpassword" value="{{values.confirmpassword}}" placeholder="Confirm-Password" class="form-control my-3 p-4 ">
                                     </div>
                                     <div class="form-row">  
                                         <div class="col">  
                                           <div class="form-check">  
                                             <label class="form-check-label">  
-                                              <input type="checkbox" class="form-check-input">  
+                                              <input type="checkbox" name = "checkbox" class="form-check-input" Required>  
                                               I hereby agree to the <a href="/tnc" target="_blank"> Terms and Conditions. </a>  
                                             </label>  
                                         </div>

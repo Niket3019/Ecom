@@ -29,15 +29,33 @@ class Product(models.Model):
   
 # register models
 class Register_Customer(models.Model):
-    username = models.CharField(max_length=30)
-    fullname = models.CharField(max_length=60)
+    username = models.CharField(max_length=20)
+    fullname = models.CharField(max_length=20)
     emailaddress = models.EmailField(max_length=40)
-    phone = models.CharField(max_length=20)
-    password = models.CharField(max_length=60)
-    confirmpassword = models.CharField(max_length=60)
+    phone = models.CharField(max_length=15)
+    password = models.CharField(max_length=250)
+    confirmpassword = models.CharField(max_length=250)
     def __str__(self):
       return self.fullname
-
+    def EmailisExist(self):
+      if Register_Customer.objects.filter(emailaddress = self.emailaddress):
+        return True
+      return False
+    def PhoneisExist(self):
+      if Register_Customer.objects.filter(phone = self.phone):
+        return True
+      return False
+    def UsernameisExist(self):
+      if Register_Customer.objects.filter(username = self.username):
+        return True
+      return False
+    @staticmethod
+    def get_customer_by_email(emailaddress):
+     try:
+      return Register_Customer.objects.get(emailaddress=emailaddress)
+     except:
+       return False
+  
 
 
 

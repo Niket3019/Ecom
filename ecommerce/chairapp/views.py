@@ -1,8 +1,9 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 from .models import Product
 from .catergory import Catergory
 from .models import Register_Customer
 from django.contrib.auth.models import User,auth 
+from django.contrib.auth.hashers import make_password,check_password
 import re
 
 
@@ -22,8 +23,6 @@ def HomePage(request):
 # Template Link
 def about(request):
     return render(request,'chairapp/about.html')
-def login(request):
-    return render(request,'chairapp/login.html')
 def why(request):
     return render(request,'chairapp/why.html')
 def product(request):
@@ -35,9 +34,33 @@ def forgot(request):
     return render(request,'chairapp/forgot.html')
 def tnc(request):
     return render(request,'chairapp/tnc.html')
-def register(request):
-    
-    if request.method == 'POST':
+def ValidateRegisterUser(customer):
+        regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+        error_message = None
+        if not customer.username:
+            error_message = "Username Is Required !!"
+        elif customer.EmailisExist():
+            error_message = "Email Address Already Exit"
+        elif customer.PhoneisExist():
+            error_message = "Phone Number Alredy Exist"
+        elif customer.UsernameisExist():
+            error_message = "Username Already Exit"
+        elif len(customer.fullname)<4:
+            error_message = "Full Name Must Be 4 Char Long "
+        elif not customer.phone:
+            error_message = "Phone Number Required !!"
+        elif len(customer.phone)==11:
+            error_message = "Phone Must Be 10 Char Long"
+        elif customer.password != customer.confirmpassword:
+            error_message = "The Password Is Not Same"
+        elif re.match(regex,customer.emailaddress):
+            pass
+        elif not customer.emailaddress:
+            error_message = "Email Input Is Not Valid"     
+        else:
+            error_message =  "Email Should Correct"   
+        return error_message  
+def registeruserpost(request):
         postData = request.POST
         username = postData.get('username')
         fullname = postData.get('fullname')
@@ -45,34 +68,55 @@ def register(request):
         phone = postData.get('phone')
         password = postData.get('password')
         confirmpassword = postData.get('confirmpassword')
-        # validation
-        error_message = None
-        regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-        if not (username and fullname and emailaddress and phone and password and confirmpassword):
-            error_message = "This Field Is Required !!"
-        elif len(fullname)<4:
-            error_message = "Full Name Must Be 4 Char Long "
-        if re.match(regex,emailaddress):
-                print(True)
-        else:
-           error_message = "The Given Email Input Is Not Valid"
-       
-           
-                
-
-        # end of validation
-        if not error_message:
-               print(username,phone,emailaddress,password)
-        # save the data in admin
-               customer = Register_Customer( username = username,
+        value = {
+            'username' : username, 'fullname': fullname,'emailaddress': emailaddress,
+            'phone':phone,'password':password,'confirmpassword':confirmpassword
+        }
+        customer = Register_Customer( username = username,
                fullname = fullname,
                emailaddress = emailaddress,
                phone = phone, password = password, 
                confirmpassword = confirmpassword )
-
+        error_message = ValidateRegisterUser(customer)
+        # validation
+         
+        # end of validation
+        if not error_message:
+               print(username,phone,emailaddress,password)
+        # Hashingh Password
+               customer.password = make_password(customer.password)
+        # save the data in admin
                customer.save()
         # end of save
+               return redirect("HomePage")
+
         else:
-          return render(request,'chairapp/register.html',{'error':error_message})
-    else:
+           data ={
+            'error':error_message,
+            'values':value
+           }
+        return render(request,'chairapp/register.html',data)
+def register(request):
+      if request.method == 'GET':
         return render(request,'chairapp/register.html')
+      else:
+       return registeruserpost(request)
+def login(request):
+    if request.method == 'GET':
+       return render(request,'chairapp/login.html')
+    else:
+        postData = request.POST
+        emailaddress = postData.get('emailaddress')
+        password = postData.get('password')
+        register_customer_emailaddress = Register_Customer.get_customer_by_email(emailaddress)
+        
+        error_message = None
+        if register_customer_emailaddress:
+            flag = check_password(password,register_customer_emailaddress.password)
+            if flag:
+                return redirect('HomePage')
+            else:
+                error_message = "Username/Email Or Password Are Invalid !!"
+        else:
+             error_message = "Username/Email Or Password Are Invalid !!"
+        return render(request,'login.html',{'error':error_message})
