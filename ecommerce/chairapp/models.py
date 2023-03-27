@@ -36,7 +36,7 @@ class Register_Customer(models.Model):
     password = models.CharField(max_length=250)
     confirmpassword = models.CharField(max_length=250)
     def __str__(self):
-      return self.fullname
+      return self.emailaddress
     def EmailisExist(self):
       if Register_Customer.objects.filter(emailaddress = self.emailaddress):
         return True
@@ -55,6 +55,41 @@ class Register_Customer(models.Model):
       return Register_Customer.objects.get(emailaddress=emailaddress)
      except:
        return False
+class NewPassCreate(models.Model):
+   emailaddress = models.OneToOneField(Register_Customer,on_delete=models.CASCADE)  
+   forgot_password_token = models.CharField(max_length=100,null=True) 
+   created_at = models.DateTimeField(auto_now_add=True)
+   def __str__(self):
+      return self.forgot_password_token
+  
+class Track_User_Path(models.Model):
+    ip_address = models.GenericIPAddressField()
+    url = models.CharField(max_length=255)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    duration = models.DurationField(null=True)
+    region = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    date_time = models.CharField(max_length=255)
+    def __str__(self):
+        return self.ip_address
+class count_button_click(models.Model):
+    ip_address = models.CharField(max_length=255,null=True)
+    tag_name = models.CharField(max_length=255,null=True)
+    click_count = models.CharField(max_length=255,null=True)
+    date_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.tag_name  
+class VedioDuration(models.Model):
+    ip_address = models.CharField(max_length=255,null=True)
+    start_time = models.CharField(max_length=255,null=True)
+    pause_time = models.CharField(max_length=255,null=True)
+    duration = models.CharField(max_length=255,null=True)
+    total_duration = models.CharField(max_length=255,null=True)
+    date_time = models.DateTimeField(auto_now_add=True)
+  
+    def __str__(self):
+        return self.total_duration  
   
 
 

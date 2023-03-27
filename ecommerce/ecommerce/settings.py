@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from msilib.schema import Media
 from pathlib import Path
-
+import pymysql 
+pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMP_DIR =BASE_DIR / "templates"
@@ -83,15 +84,27 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
    #     'NAME': BASE_DIR / 'db.sqlite3',
    # }
 #}
+#DATABASES = {
+   #'default': {
+     #  'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    # 'NAME': 'CHAIRPRODUCT',
+    #   'USER': 'postgres',
+   #    'PASSWORD': '3019',
+  #     'HOST': 'localhost',
+ #      'PORT': '5432',
+#   }
+#}
+
+#mysql
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-     'NAME': 'CHAIRPRODUCT',
-       'USER': 'postgres',
-       'PASSWORD': '3019',
-       'HOST': 'localhost',
-       'PORT': '5432',
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'chairproduct',
+        'USER': 'root',
+        'PASSWORD': '3019',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
 }
 
 #Password validation
@@ -138,3 +151,10 @@ MEDIA_ROOT = BASE_DIR
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'niketsingh672@gmail.com'
+EMAIL_HOST_PASSWORD = 'hbbuismrxpfgzbcw'

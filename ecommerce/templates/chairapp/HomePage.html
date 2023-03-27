@@ -2,11 +2,11 @@
 
 {% block title %}Home{% endblock title %}
 {% load static %}
-
+ {% load cart %}
     {% block body %}
     
     <!-- end header section -->
-
+    
     <!-- slider section -->
     <section class="slider_section ">
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
@@ -118,20 +118,24 @@
           <div class="box">
             <div class="img-box">
               <img src="{{product.image.url}}" alt="">
-              <a href="" class="add_cart_btn">
-                <span>
-                  Buy Now
-                </span>
-              </a>
+              <form action="/" method="POST">
+                {% csrf_token %}
+                <input type="text" hidden name="product" value='{{product.id}}'>
+              <input href="/" type="submit" class="add_cart_btn" value="Buy Now">
+
+              </input>
+            </form>
             </div>
             <div class="detail-box">
               <h5>
                 {{product.name}}
               </h5>
               <div class="product_info">
+           
                 <h5 class="price">
                   <b>₹{{product.price}}</b><p><s><b>₹{{product.PrevPrice}}</b></s></p>
                 </h5>
+                {{product | is_in_cart:request.session.cart}}
                 <div class="star_container">
                   <i class="fa fa-star" aria-hidden="true"></i>
                   <i class="fa fa-star" aria-hidden="true"></i>
@@ -372,9 +376,11 @@
             </span>
             <span class="sr-only">Next</span>
           </a>
+          
         </div>
       </div>
     </div>
+    
   </section>
   <!-- end client section -->
 

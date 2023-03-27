@@ -25,17 +25,25 @@
                 <div class="col-lg-7 px-5 pt-5">
                     <h1 class="forgot"><b>Aarti Chairs</b></h1>
                     <h4 class="forgot">Forgot Password?</h4>
-                    <form>
+                    <form action="/forgot" method="POST">
                         <div class="fw-normal teext-muted  mb-4 mx-2">
                             Enter your email to reset your passwrod
                         </div>
+                        {% csrf_token %}
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{error}}
+                        </div>
+                        {% endif %}
                         <div class="form-row">
                             <div class="col-lg-7">
-                                <input type="email" placeholder="Email-Address" class="form-control my-3 p-4">
+                                <input type="email" name="emailaddress" placeholder="Email-Address" class="form-control my-3 p-4">
                             </div>
+
+                            
                                 <div class="form-row">
                                     <div class="col-lg-7">
-                                        <button type="button" class="btn btn-primary submit_btn my-2">Submit</button>
+                                        <button type="submit" class="btn btn-primary submit_btn my-2">Submit</button>
                                         <button type="button" class="btn btn-secondary submit_btn ms-3">Cancel</button>
                                     </div>
 
