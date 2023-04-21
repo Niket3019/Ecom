@@ -1,0 +1,158 @@
+
+{% extends 'NavMaster.html' %}
+
+
+
+{%load static%}
+
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</head>
+
+
+
+<div class="conatinneer" style="
+margin-top: 10px;
+/* margin-bottom: 163px; */
+/* width: 94%; */
+">
+    <form method="post" enctype="multipart/form-data">
+        <!-- <div class="container rounded bg-white mt-5 mb-5"> -->
+            <div class="row" style="
+            width: 42%;
+            margin-left: 31%;
+            /* height: 142%; */
+            background: white;
+            border-radius: 30px;
+            box-shadow: 12px 12px 22px grey;
+            margin-bottom: 35px;
+            height: -127%;
+        ">
+                <div class="border-right" style="
+                margin-left: 10rem;
+            ">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5" style="
+                    width: 100%;
+                ">
+                       
+                        {% if customer.image %}              
+                        <img class="rounded-circle mt-5" src="{{ customer.image }}"  width="200px" alt="Profile Picture">     
+                        {% if request.session.customer_id %}
+                        <span class="text-black-50">{{ customer.emailaddress }}</span>
+                    {% else %}
+                          {% endif %}
+                        
+                        <span> </span>
+                    </div>
+                        {% else %}
+                  
+                  {% endif %}
+                </div>
+                <div class="col">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 style="
+                            margin-left: 35%;
+                        " class="text-right">Profile Settings</h4>
+                        </div>
+                        <!-- <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Username</label>
+                            <input type="text" class="a" placeholder=" Username" value="">
+                        </div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text"
+                                class="a" value="" placeholder="surname"></div>
+                    </div> -->
+                    <div class="row" style="
+                    display: flex;
+                ">
+                        {% csrf_token %}
+                        <div class="col">
+                            <label style="
+                            margin-left: 24px;
+                        ">Username:</label>
+                            <input style="
+                            margin-right: 3rem;
+                            margin-bottom: 34px;
+                        " type="text" name="username" class="a" value="{{ customer.username }}">
+                        </div>
+                        <div class="col">
+                            <label>First Name:</label>
+                            <input style="
+                            margin-bottom: 34px;
+                        " type="text" name="first_name" class="a" value="{{ customer.first_name }}">
+                        </div>
+                        <input type="hidden" name="emailaddress" value="{{ customer.emailaddress }}">
+                        <div class="col">
+                            <label style="
+                            margin-left: 24px;
+                        ">Middle Name:</label>
+                            <input style="
+                            margin-bottom: 34px;
+                        " type="text" name="middle_name" class="a" value="{{ customer.middle_name }}">
+                        </div>
+                        <div class="col" style="
+                        margin-top: 18px;
+                    ">
+                            <label style="
+                            margin-left: 23px;
+                            /* margin-top: 5px; */
+                        ">Last Name:</label>
+                            <input style="
+                            margin-bottom: 34px;
+                        " type="text" name="last_name" class="a" value="{{ customer.last_name }}">
+                        </div>
+                        <div class="form-row">
+                          
+                            <div class="col">
+                                <label style="
+                                margin-left: 10px;
+                            ">Age:</label>
+                                <input style="
+                                margin-bottom: 34px;
+                                margin-left: 10px;
+                            " type="number" name="age" class="a" value="{{ customer.age }}">
+                            </div>
+                            <div class="col">
+                                <label>Phone Number:</label>
+                                <input type="tel" name="phone" class="a" value="{{ customer.phone }}">
+                            </div>
+                            <div class="col">
+                                <label>Address:</label>
+                                <input type="text" name="address" class="a" value="{{ customer.address }}">
+                            </div>
+                            <div class="col" style="
+                            margin-left: 10px;
+                        ">
+                                <label>Bio:</label>
+                                <textarea name="bio" class="a">{{ customer.bio }}</textarea>
+                            </div>
+                            <div class="col">
+                                <label>Profile Picture:</label>
+                                <input type="file" name="image" class="a-file">
+                            </div>
+                        </div>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <input type="submit" class="btn btn-primary" value="Save">
+                                <a href="/" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                  
+    </form>
+</div>
+
+{% endblock %}
+
+</html>
+

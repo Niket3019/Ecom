@@ -1,0 +1,224 @@
+{% extends 'NavMaster.html' %}
+
+{% load static %}
+{% block body %}
+
+    <link rel="stylesheet" href="{% static 'css/productdetail.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link href="{%static 'css/custom.css' %}" rel="stylesheet" />
+    <script>
+      function checkAvailability() {
+        var pincode = document.getElementById("pincode").value;
+        var availablePincodes = ["400001", "400002", "400003", "400004", "400005", "400006", "400007", "400008", "400009", "400010", "400011", "400012", "400013", "400014", "400015", "400016", "400017", "400018", "400019", "400020", "400021", "400022", "400023", "400024", "400025", "400026", "400027", "400028", "400029", "400030", "400031", "400032", "400033", "400034", "400035", "400036", "400037", "400038", "400039", "400040", "400041", "400042", "400043", "400044", "400045", "400046", "400047", "400048", "400049", "400050", "400051", "400052", "400053", "400054", "400055", "400056", "400057", "400058", "400059", "400060", "400061", "400062", "400063", "400064", "400065", "400066", "400067", "400068", "400069", "400070", "400071", "400072", "400073", "400074", "400075", "400076", "400077", "400078", "400079", "400080", "400081", "400082", "400083", "400084", "400085", "400086", "400087", "400088", "400089", "400090", "400091", "400092", "400093", "400094", "400095", "400096", "400097", "400098", "400099", "400101", "400102", "400103", "400104", "400601", "400602", "400603", "400604", "400605", "400606", "400607", "400608", "400609", "400610", "400611", "400612", "400613", "400614", "400615", "400701", "400702", "400703", "400704", "400705", "400706", "400707", "400708", "400709", "400710", "400711", "400712", "400713", "400714", "400715", "400716", "400801", "400802", "400803", "400804", "400805", "400806", "400807", "400808", "400809", "400810", "400811", "400812", "400814", "400815", "400816", "400817", "400818", "400819", "400820", "400821", "400822", "400823", "400824", "400825", "400826", "400827", "400828", "400829", "400830", "400831", "400832", "400833", "400834", "400835", "400836", "400837", "400839", "400841", "400842", "400843", "400844", "400845", "400846", "400847", "400848", "400849", "400850", "400851", "400852", "400853", "400854", "400855", "400856", "400857"]
+        if (availablePincodes.includes(pincode)) {
+          document.getElementById("message").innerHTML = "Product is available in your area!";
+          document.getElementById("message").style.color = "green";
+        } else {
+          document.getElementById("message").innerHTML = "Sorry, the product is not available in your area.";
+          document.getElementById("message").style.color = "red";
+        }
+      }
+    </script>
+    
+    <div class = "card-wrapper" style="
+    width: 100%;
+    /* margin-top: 10rem; */
+    /* margin-top: 26rem; */
+    height: 100%;
+    margin-bottom: 27rem;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 12px 12px 22px grey;
+">
+      <div class = "card">
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+              <img style="
+              height: 42rem;
+          " src = "{{product.image.url}}" alt = "shoe image">
+              <img style="
+              height: 42rem;
+          " src = "{{product.image1.url}}" alt = "shoe image">
+              <img style="
+              height: 42rem;
+          " src = "{{product.image2.url}}" alt = "shoe image">
+              <img style="
+              height: 42rem;
+          " src = "{{product.image3.url}}" alt = "shoe image">
+            </div>
+          </div>
+          <div class = "img-select">
+            <div class = "img-item">
+              <a href = "#" data-id = "1">
+                <img style="
+                /* width: 165px; */
+                /* width: min-content; */
+                height: 80%;
+            " src = "{{product.image.url}}" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "2">
+                <img style="
+                /* width: 165px; */
+                /* width: min-content; */
+                height: 80%;
+            " src = "{{product.image1.url}}" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "3">
+                <img style="
+                /* width: 165px; */
+                /* width: min-content; */
+                height: 80%;
+            " src = "{{product.image2.url}}" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "4">
+                <img style="
+                /* width: 165px; */
+                /* width: min-content; */
+                height: 80%;
+            " src = "{{product.image3.url}}" alt = "shoe image">
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- card right -->
+        <div class = "product-content">
+          <h2 class = "product-title">{{product.name}}</h2>
+       
+          <div class = "product-rating">
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star"></i>
+            <i class = "fas fa-star-half-alt"></i>
+            <span>4.7(21)</span>
+          </div>
+
+          <div class = "product-price">
+            <p class = "last-price">Old Price: <span>{{product.PrevPrice}}</span></p>
+            <p class = "new-price">New Price: <span>{{product.price}}</span></p>
+          </div>
+
+          <div class = "product-detail">
+            <h2>about this item: </h2>
+          <p> <strong>{{product.description}}</strong></p>
+            <ul>
+              <li>Color: <span>Black</span></li>
+              <li>Available: <span>in stock</span></li>
+              <li>Category: <span>{{product.catergory.name}}</span></li>
+              <li>Shipping Area: <span>All over the world</span></li>
+              <li>Shipping Fee: <span>Free</span></li>
+            </ul>
+          </div>
+
+          <div class = "purchase-info" required>
+            <label for="pincode" style="font-size: 18px; font-weight: bold;">Enter your Pincode:</label>
+            <input type="text" id="pincode" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;" required>
+            <button onclick="checkAvailability()" style="background-color: green; color: #fff; padding: 5px 10px; border-radius: 5px; border: none; margin-left: 10px; cursor: pointer;">Check Availability</button>
+            <div id="message" style="margin-top: 10px;"></div>
+            
+            <button type = "button" class = "btn">Buy Now</button>
+          </div>
+
+          <div class = "social-links">
+            <p>Share At: </p>
+            <a href = "#">
+              <i class = "fab fa-facebook-f"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-twitter"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-instagram"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-whatsapp"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-pinterest"></i>
+            </a>
+          </div>
+        </div>
+        <div class="reviewss" style="display: flex; justify-content: center;">
+          <div class="review-form" style="width: 60%; display: flex; flex-direction: column;">
+              <form action="{% url 'submit_review' product.id %}" method="POST">
+                  {% csrf_token %}
+                  <h5>Write Your Review</h5>
+                  
+                      <!-- Rating stars -->
+                      <label>How do you rate this product?</label>
+                      <br>
+                      <div class="rate">
+                          <input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10" title="5"></label>
+                          <input type="radio" name="rating" id="rating8" value="4" required /><label for="rating8" title="4"></label>
+                          <input type="radio" name="rating" id="rating6" value="3" required /><label for="rating6" title="3"></label>
+                          <input type="radio" name="rating" id="rating4" value="2" required /><label for="rating4" title="2"></label>
+                          <input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2" title="1"></label>
+                      </div>
+                      <br>
+                      <label>Review Title:</label>
+                      <input type="text" class="form-control" name="subject">
+                      <br>
+                      <label>Review:</label>
+                      <textarea name="review" rows="4" class="form-control"></textarea>
+                      <br>
+                      {% if request.session.customer_id %}
+                          <input type="submit" value="Submit Review" class="btn btn-primary">
+                      {% else %}
+                          <p>You must be logged in to post a review. <span><a href="/login">Login now</a></span></p>
+                      {% endif %}
+                  </div>
+                  {% include 'chairapp/alerts.html' %}
+              </form>
+          </div>
+          <div class="review" style="width: 40%;display: flex;flex-direction: column;padding-left: 20px;overflow: auto;/* overflow-y: scroll; */ /* enable vertical scroll */scroll-behavior: smooth; /* enable smooth scrolling */">
+              <h5>Submitted Reviews</h5>
+              <hr>
+              <div>
+                  {% for review in reviews %}
+                      <div>
+                          <p>{{ review.customer }} - {{ review.created_at|date:"F j, Y" }}</p>
+                          <p>Subject: {{ review.subject }}</p>
+                          <p>Review: {{ review.review }}</p>
+                          <p>Rating: {{ review.rating }}</p>
+                          <div class="rate">
+                              <input type="radio" name="rating{{ review.id }}" value="5" {% if review.rating == 5 %}checked{% endif %} /><label onmouseover="this.style.pointerEvents='none'" for="star5_{{ review.id }}" title="5 stars"><i class="fa"></i></label>
+                              <input type="radio" name="rating{{ review.id }}" value="4" {% if review.rating == 4 %}checked{% endif %} /><label onmouseover="this.style.pointerEvents='none'" for="star4_{{ review.id }}" title="4 stars"><i class="fa"></i></label>
+                              <input type="radio" name="rating{{ review.id }}" value="3" {% if review.rating == 3 %}checked{% endif %} /><label onmouseover="this.style.pointerEvents='none'" for="star3_{{ review.id }}" title="3 stars"><i class="fa"></i></label>
+                   
+      
+                <input type="radio" name="rating{{ review.id }}" value="2" {% if review.rating == 2 %}checked{% endif %} /><label onmouseover="this.style.pointerEvents='none'" for="star2_{{ review.id }}" title="2 stars"><i class="fa"></i></label>
+                <input type="radio" name="rating{{ review.id }}" value="1" {% if review.rating == 1 %}checked{% endif %} /><label onmouseover="this.style.pointerEvents='none'" for="star1_{{ review.id }}" title="1 star"><i class="fa"></i></label>
+            </div>
+            
+            <br>
+            {% if request.session.customer_id %}
+               
+                <a href="{% url 'delete_review' review.id %}">Delete</a>
+            </div>
+            {% endif %}
+            <hr>
+    {% empty %}
+        <p>No reviews found.</p>
+    {% endfor %}
+    
+    </div>
+    {% block show_footer %}
+    {% with False as show_footer %}
+      {{ block.super }}
+    {% endwith %}
+  {% endblock %}
+
+    
+    <script src="{% static 'js/productdetail.js' %}"></script>
+
+{% endblock body %}
+{% block show_section %}{% with False as show_section %}{% endwith %}{% endblock %}

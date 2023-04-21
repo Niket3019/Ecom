@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'chairapp.middleware.auth.auth_middleware'
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -99,7 +100,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'chairproduct',
+        'NAME': 'chair',
         'USER': 'root',
         'PASSWORD': '3019',
         'HOST': 'localhost',

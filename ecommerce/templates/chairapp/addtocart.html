@@ -1,0 +1,206 @@
+{% extends 'NavMaster.html' %}
+
+{%load static%}
+
+{% block body %}
+<!DOCTYPE html>
+<!--code by webdevtrick ( https://webdevtrick.com) -->
+<html lang="en">
+  {% load static %}
+
+
+<head>
+    <link rel="icon" href="https://webdevtrick.com/wp-content/uploads/2019/02/webdevtrick-favicon-1.png" type="image/png" sizes="16x16">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-77741880-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-77741880-4');
+  function checkAvailability() {
+    var pincode = document.getElementById("pincode").value;
+    var availablePincodes = ["400001", "400002", "400003", "400004", "400005", "400006", "400007", "400008", "400009", "400010", "400011", "400012", "400013", "400014", "400015", "400016", "400017", "400018", "400019", "400020", "400021", "400022", "400023", "400024", "400025", "400026", "400027", "400028", "400029", "400030", "400031", "400032", "400033", "400034", "400035", "400036", "400037", "400038", "400039", "400040", "400041", "400042", "400043", "400044", "400045", "400046", "400047", "400048", "400049", "400050", "400051", "400052", "400053", "400054", "400055", "400056", "400057", "400058", "400059", "400060", "400061", "400062", "400063", "400064", "400065", "400066", "400067", "400068", "400069", "400070", "400071", "400072", "400073", "400074", "400075", "400076", "400077", "400078", "400079", "400080", "400081", "400082", "400083", "400084", "400085", "400086", "400087", "400088", "400089", "400090", "400091", "400092", "400093", "400094", "400095", "400096", "400097", "400098", "400099", "400101", "400102", "400103", "400104", "400601", "400602", "400603", "400604", "400605", "400606", "400607", "400608", "400609", "400610", "400611", "400612", "400613", "400614", "400615", "400701", "400702", "400703", "400704", "400705", "400706", "400707", "400708", "400709", "400710", "400711", "400712", "400713", "400714", "400715", "400716", "400801", "400802", "400803", "400804", "400805", "400806", "400807", "400808", "400809", "400810", "400811", "400812", "400814", "400815", "400816", "400817", "400818", "400819", "400820", "400821", "400822", "400823", "400824", "400825", "400826", "400827", "400828", "400829", "400830", "400831", "400832", "400833", "400834", "400835", "400836", "400837", "400839", "400841", "400842", "400843", "400844", "400845", "400846", "400847", "400848", "400849", "400850", "400851", "400852", "400853", "400854", "400855", "400856", "400857"]
+    ; // Sample list of available pincodes
+    if (availablePincodes.includes(pincode)) {
+      document.getElementById("message").innerHTML = "Product is available in your area!";
+      document.getElementById("message").style.color = "green";
+    } else {
+      document.getElementById("message").innerHTML = "Sorry, the product is not available in your area.";
+      document.getElementById("message").style.color = "red";
+    }
+  }
+</script>
+<script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script> <script>(adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1438670738267328",
+          enable_page_level_ads: true
+     });</script> <script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script> <script>(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-1438670738267328", enable_page_level_ads: true });</script>  <title>Responsive Shopping Cart | Webdevtrick.com</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="canonical" href="https://webdevtrick.com/responsive-shopping-cart-page/" />
+<link rel="stylesheet" href="{% static 'css/addtocart.css' %}">
+
+</head>
+<body style="padding: 0px 0px 0px 0px;">
+
+<h1 style="
+margin-left: 43%;
+color: #212529;
+">Shopping Cart</h1>
+
+<div class="shopping-cart" style="margin-top: 14px;margin-right: 46px;background: white;border-radius: 30px;box-shadow: 12px 12px 22px grey;margin-left: 89px;margin-bottom: 14px;">
+
+  <div class="column-labels"style="
+  margin-top: 14px;
+  margin-right: 46px;
+" >
+    <label class="product-image" style="
+    text-indent: 0;
+    /* margin-left: 8rem; */
+    padding-left: 102px;
+" >Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
+    <label class="product-removal" style="
+    text-indent: 0;
+">Remove</label>
+    <label class="product-line-price">Total</label>
+  </div>
+{% for product in products %}
+  <div class="product" style="
+  margin-right: 46px;
+">
+    <div class="product-image">
+      <img src="{{product.image.url}}">
+    </div>
+    <div class="product-details">
+      <div class="product-title">{{product.name}}</div>
+     <!--<p class="product-description">Predator is the new product series dedicated to PC Gaming from Acer: Desktop, Notebook, Tablet and Monitors for a complete gaming experience.</p>-->
+    </div>
+    <div class="product-price">{{product.price}}</div>
+    <div class="product-quantity">
+      <input type="number" value="2" min="1">
+    </div>
+    <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div>
+    <div class="product-line-price">{{product.price}}</div>
+  </div>
+
+{% endfor %}
+
+  <div class="totals" style="
+  margin-right: 10px;
+">
+    <div class="totals-item" style="
+    margin-right: 10px;
+">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal">3696.99</div>
+    </div>
+    <div class="totals-item" style="
+    margin-right: 10px;
+">
+      <label>Tax (5%)</label>
+      <div class="totals-value" id="cart-tax">3.60</div>
+    </div>
+    <div class="totals-item" style="
+    margin-right: 10px;
+">
+      <label>Shipping</label>
+      <div class="totals-value" id="cart-shipping">15.00</div>
+    </div>
+    <div class="totals-item totals-item-total" style="
+    margin-right: 10px;
+">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">4079.16</div>
+    </div>
+  </div>
+
+  <label for="pincode" style="font-size: 18px; font-weight: bold;">Enter your Pincode:</label>
+  <input type="text" id="pincode" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;" required>
+  <button onclick="checkAvailability()" style="background-color: green; color: #fff; padding: 5px 10px; border-radius: 5px; border: none; margin-left: 10px; cursor: pointer;">Check Availability</button>
+  <div id="message" style="margin-top: 10px;"></div>
+  
+      <button class="checkout"data-toggle="modal" data-target=".bd-example-modal-lg" style="
+      margin-right: 10px;
+      margin-bottom: 23px;
+  ">Checkout</button>
+
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <form action="/checkout" method="POST">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="first-name" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="first-name" name="first_name" value="{{first_name}}" required>
+              </div>
+              <div class="mb-3">
+                <label for="last-name" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="last-name" name="last_name" value = "{{last_name}}"required>
+              </div>
+              <div class="form-group">
+                <label>Phone:</label>
+                <input type="text" name="phone" class="form-control"value="{{phone}}" required>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="address-type" id="default-address" value="{{address}}">
+                <label class="form-check-label" for="default-address">
+                  Use default address: <span id="default-address-text">{{address}}</span>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="address-type" id="new-address" value="new-address">
+                <label class="form-check-label" for="new-address">
+                  Create new address
+                </label>
+              </div>
+              <div class="mb-3" id="new-address-container">
+                <label for="new-address" class="form-label">New Address</label>
+                <textarea class="form-control" id="new-address" name="new-address" rows="3"></textarea>
+              </div>
+              <a href="/confirmation" type="submit" class="btn btn-primary" style="text-decoration:none;">Submit</a>
+            </form>
+            
+            
+            
+          </div>
+        </div>
+
+
+
+
+        
+      </div>
+
+</div>
+
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="{% static 'js/addtocart.js' %}"></script>
+<script>$(document).ready(function() {
+  // Hide the new address container by default
+  $('#new-address-container').hide();
+
+  // When the user selects a radio button, show or hide the new address container as needed
+  $('input[name="address-type"]').change(function() {
+    if ($(this).val() == 'new-address') {
+      $('#new-address-container').show();
+    } else {
+      $('#new-address-container').hide();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+{% endblock %}

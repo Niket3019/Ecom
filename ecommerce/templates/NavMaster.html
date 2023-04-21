@@ -28,15 +28,19 @@
 
  <!-- Custom styles for this template -->
  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+ <link href="{% static 'css/popup.css' %}" rel="stylesheet" />
+
  <!-- responsive style -->
  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
  <link href="{% static 'css/extraboot.css' %}" rel="stylesheet" />
  <link href="{% static 'css/new.css' %}" rel="stylesheet" />
- 
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <link href="{% static 'css/light-dark.css' %}" rel="stylesheet" />
+
 </head>
 
 <body>
-
+  {% csrf_token %}
   <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
@@ -56,6 +60,7 @@
                   Email : niketsingh199@gmail.com
                 </span>
               </a>
+              
             </div>
             <from class="search_form">
               <input type="text" class="form-control" placeholder="Search here...">
@@ -64,16 +69,53 @@
               </button>
             </from>
             <div class="user_option_box">
-              <a href="/login" class="account-link">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <span>
-                  Login
-                </span>
+              {% if request.session.customer_id %}
+      
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown
               </a>
-              <a href="#" class="cart-link">
+    
+
+
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <li><a style="
+          color: black;
+          margin-left: 0px;
+      "class="dropdown-item" href="/profile">My Profile</a></li>
+        <li><a style="
+          color: black;
+          margin-left: 0px;
+      " class="dropdown-item" href="#">Orders</a></li>
+        <li><astyle="
+    color: black;
+"style="
+color: black;
+margin-left: 0px;
+" class="dropdown-item" href="#">Coupons</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li class="nav-item">
+        
+          <a style="
+          color: black;
+          margin-left: 0px;
+      "  class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+        </li>
+      </ul>
+      
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="/signup">Signup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      {% endif %}
+  </ul>
+  
+              <a href="/addtocart" class="cart-link">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 <span>
-                  Cart
+                  Cart <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
                 </span>
               </a>
             </div>
@@ -90,7 +132,7 @@
               </span>
 
             </a>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
+            <button id="button-hide" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class=""> </span>
@@ -105,8 +147,8 @@
                   <a class="nav-link" href="/about"> About</a>
                 </li>
             
-                <li class="nav-item">
-                  <a class="nav-link" href="/product">Products</a>
+                <li id="hide-toggle" class="nav-item">
+                  <a  class="nav-link" href="/product">Products</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/why">Why Us</a>
@@ -139,7 +181,10 @@
   
 
     {% endblock body %}
-    
+   
+    {% block section %}
+    {% if show_section %}
+      {% block section_content %}
    <section class="info_section ">
     <div class="container">
       <div class="row">
@@ -240,6 +285,10 @@
       </div>
     </div>
   </section>
+  {% endblock %}
+  {% endif %}
+{% endblock %}
+  <footer>
     <footer class="footer_section">
         <div class="container">
           <p>
@@ -248,14 +297,59 @@
           </p>
         </div>
       </footer>
+        
+   <script>
+    var buttonClicks = {};
+    $('#button-hide,#button-2,#button-3,#button-4,#button-5').on('click', function() {
+      var buttonId = $(this).text();
+      if (!buttonClicks[buttonId]) {
+        buttonClicks[buttonId] = 0;
+      }
+      buttonClicks[buttonId]++;
+      console.log('Button ' + buttonId + ' clicks: ' + buttonClicks[buttonId]);
+  
+      // Send AJAX request to save the button click count
+      $.ajax({
+        type: 'POST',
+        url: '',
+        data: {
+          'button_id': buttonId,
+          'count': buttonClicks[buttonId],
+
+        },
+        success: function(response) {
+          console.log('Button click count saved successfully.');
+        },
+        error: function(xhr, status, error) {
+          console.log('Error saving button click count: ' + error+status+xhr);
+        }
+      });
+    });
+  
+
+
+    var HideToggle = document.getElementById('nav-link')
+    var removecatregory = document.getElementById('button-hide')
+    
+    HideToggle.onclick= function()  {
+        // hide button2
+        removecatregory.style.display = 'none';
+      };</script>
+      <!-- Modal -->
+     
       <!-- footer section -->
     
       <!-- jQery -->
       <script src="{% static 'js/jquery-3.4.1.min.js'%}"></script>
       <!-- bootstrap js -->
       <script src="{% static 'js/bootstrap.js' %}"></script>
+      <script src="{% static 'js/popup.js' %}"></script>
+
       <!-- custom js -->
+      <script src="{% static 'js/colorchange.js' %}"></script>
       <script src="{% static 'js/custom.js' %}"></script>
+      <script src="{% static 'js/hidetoggle.js' %}"></script>
+    
       <script src="{% static 'js/EyeBot.js' %}"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     

@@ -4,9 +4,9 @@
 {% load static %}
  {% load cart %}
     {% block body %}
-    
+  
     <!-- end header section -->
-    
+
     <!-- slider section -->
     <section class="slider_section ">
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
@@ -115,21 +115,28 @@
       <div class="row">
         <div class="container">
         <div class="col-sm-6 col-lg-4">
-          <div class="box">
+          <div id={{product.id}} class="box">
             <div class="img-box">
               <img src="{{product.image.url}}" alt="">
-              <form action="/" method="POST">
+              <form action="/#{{product.id}}" method="POST">
                 {% csrf_token %}
                 <input type="text" hidden name="product" value='{{product.id}}'>
-              <input href="/" type="submit" class="add_cart_btn" value="Buy Now">
+              <input type="submit" class="add_cart_btn" style="margin-top: 45px;margin-bottom: 60px;" value="Add To Cart">
 
               </input>
             </form>
+            <form action="" >
+              {% csrf_token %}
+              <input type="text" hidden name="product" >
+            <a  href="/products/{{product.id}}" class="add_cart_btn" style="margin-top: 20px;" value="Buy Now">Buy Now</a>
+
+            </a>
+          </form>
             </div>
             <div class="detail-box">
-              <h5>
+              <a >
                 {{product.name}}
-              </h5>
+              </a>
               <div class="product_info">
            
                 <h5 class="price">
@@ -382,6 +389,42 @@
     </div>
     
   </section>
+  {% if request.session.customer_id %}
+    
+  {% else %}
+  <div class="modal animated shake" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 p-3">
+              <img id="img"src="http://127.0.0.1:5500/login2/E1.jpeg" alt="">
+            </div>
+            <div class="col-md-6 p-3">
+              <div class="formWrap">
+                <h1>AARTI CHAIRS</h1>
+  
+                <hr>
+            <form>
+              <input type="text" placeholder="Email Address">
+              <input type="password" placeholder="Password">
+              <input class="submit" type="submit" value="LOGIN">
+            </form>
+            <h6> <a href="#">Forgot Password</a></h6>
+            <h6>Create an account? <a href="#">Sign-Up</a></h6>
+          
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  
+  
+  <script>
+  {% endif %}
   <!-- end client section -->
 
   <!-- info section -->
@@ -389,3 +432,7 @@
 
   <!-- end info_section -->
 {% endblock body %}
+{% block show_section %}{% with True as show_section %}{% endwith %}{% endblock %}
+{% block section_content %}
+  <!-- home section content -->
+{% endblock %}

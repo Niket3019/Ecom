@@ -60,7 +60,9 @@ class register(View):
             error_message = "Full Name Must Be 4 Char Long "
         elif not customer.phone:
             error_message = "Phone Number Required !!"
-        elif len(customer.phone)<10:
+        if not customer.phone:
+            error_message = "Phone Number Required !!"
+        elif len(customer.phone)!=10:
             error_message = "Phone Must Be 10 Char Long"
         elif customer.password != customer.confirmpassword:
             error_message = "The Password Is Not Same"
